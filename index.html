@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Encrypted Messenger</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@3/dark.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/emoji.css">
+
+  <!-- PWA Configuration -->
+  <link rel="apple-touch-icon" sizes="57x57" href="assets/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="assets/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="assets/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="assets/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="assets/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="assets/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="manifest" href="assets/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="assets/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body>
+  <nav class="navbar navbar-custom fixed-top flex-md-nowrap p-2 shadow">
+    <a class="navbar-brand col-sm-2 col-md-2 mr-0" href="/">
+      <img src="assets/logout.png" width="22px" onclick="logout()" style="float: right; padding-top: 7px;">
+      <img src="assets/favicon.png" width="37px">
+      Encrypted Messenger<span class="text-muted" style="font-size: x-small;">&nbsp;&nbsp;V.1.0.0</span></a>
+  </nav>
+
+
+  <div class="--dark-theme" id="chat">
+    <div class="chat__conversation-board" id="chat_msgs">
+
+    </div>
+
+
+    <div class="chat__conversation-panel">
+      <div class="chat__conversation-panel__container">
+
+
+        <!-- <button class="chat__conversation-panel__button panel-item btn-icon add-file-button">
+      <svg class="feather feather-plus sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+    </button> -->
+
+
+
+
+        <button onclick="$('.intercom-composer-emoji-popover').toggleClass('active');"
+          class="chat__conversation-panel__button panel-item btn-icon emoji-button">
+          <svg class="feather feather-smile sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+          </svg>
+        </button>
+
+
+
+        <input autofocus onkeydown="search()" id="msg_input" class="chat__conversation-panel__input panel-item"
+          style="text-indent:0.4em;" placeholder="Type a message..." />
+        <button onclick="send();" class="chat__conversation-panel__button panel-item btn-icon send-message-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+            data-reactid="1036">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+
+
+        <div class="emoji-panel">
+          <div class="intercom-composer-popover intercom-composer-emoji-popover">
+            <div class="intercom-emoji-picker">
+              <div class="intercom-composer-popover-body-container">
+                <div class="intercom-composer-popover-body">
+                  <div class="intercom-emoji-picker-groups">
+                    <div class="intercom-emoji-picker-group">
+                      <div class="intercom-emoji-picker-group-title">Emojis</div>
+                      <span class="intercom-emoji-picker-emoji" title="smile">😄</span>
+                      <span class="intercom-emoji-picker-emoji" title="smiley">😃</span>
+                      <span class="intercom-emoji-picker-emoji" title="joy">😂</span>
+                      <span class="intercom-emoji-picker-emoji" title="blush">😊</span>
+                      <span class="intercom-emoji-picker-emoji" title="wink">😉</span>
+                      <span class="intercom-emoji-picker-emoji" title="heart_eyes">😍</span>
+                      <span class="intercom-emoji-picker-emoji" title="kissing_heart">😘</span>
+                      <span class="intercom-emoji-picker-emoji" title="kissing_closed_eyes">😚</span>
+                      <span class="intercom-emoji-picker-emoji" title="kissing">😗</span>
+                      <span class="intercom-emoji-picker-emoji" title="kissing_smiling_eyes">😙</span>
+                      <span class="intercom-emoji-picker-emoji" title="stuck_out_tongue_winking_eye">😜</span>
+                      <span class="intercom-emoji-picker-emoji" title="stuck_out_tongue_closed_eyes">😝</span>
+                      <span class="intercom-emoji-picker-emoji" title="stuck_out_tongue">😛</span>
+                      <span class="intercom-emoji-picker-emoji" title="flushed">😳</span>
+                      <span class="intercom-emoji-picker-emoji" title="grin">😁</span>
+                      <span class="intercom-emoji-picker-emoji" title="pensive">😔</span>
+                      <span class="intercom-emoji-picker-emoji" title="relieved">😌</span>
+                      <span class="intercom-emoji-picker-emoji" title="unamused">😒</span>
+                      <span class="intercom-emoji-picker-emoji" title="wannacry">🥺</span>
+                      <span class="intercom-emoji-picker-emoji" title="disappointed">😞</span>
+                      <span class="intercom-emoji-picker-emoji" title="persevere">😣</span>
+                      <span class="intercom-emoji-picker-emoji" title="cry">😢</span>
+                      <span class="intercom-emoji-picker-emoji" title="sob">😭</span>
+                      <span class="intercom-emoji-picker-emoji" title="sleepy">😪</span>
+                      <span class="intercom-emoji-picker-emoji" title="disappointed_relieved">😥</span>
+                      <span class="intercom-emoji-picker-emoji" title="cold_sweat">😰</span>
+                      <span class="intercom-emoji-picker-emoji" title="sweat_smile">😅</span>
+                      <span class="intercom-emoji-picker-emoji" title="sweat">😓</span>
+                      <span class="intercom-emoji-picker-emoji" title="weary">😩</span>
+                      <span class="intercom-emoji-picker-emoji" title="tired_face">😫</span>
+                      <span class="intercom-emoji-picker-emoji" title="fearful">😨</span>
+                      <span class="intercom-emoji-picker-emoji" title="scream">😱</span>
+                      <span class="intercom-emoji-picker-emoji" title="angry">😠</span>
+                      <span class="intercom-emoji-picker-emoji" title="rage">😡</span>
+                      <span class="intercom-emoji-picker-emoji" title="triumph">😤</span>
+                      <span class="intercom-emoji-picker-emoji" title="confounded">😖</span>
+                      <span class="intercom-emoji-picker-emoji" title="laughing">😆</span>
+                      <span class="intercom-emoji-picker-emoji" title="yum">😋</span>
+                      <span class="intercom-emoji-picker-emoji" title="mask">😷</span>
+                      <span class="intercom-emoji-picker-emoji" title="sunglasses">😎</span>
+                      <span class="intercom-emoji-picker-emoji" title="sleeping">😴</span>
+                      <span class="intercom-emoji-picker-emoji" title="dizzy_face">😵</span>
+                      <span class="intercom-emoji-picker-emoji" title="astonished">😲</span>
+                      <span class="intercom-emoji-picker-emoji" title="worried">😟</span>
+                      <span class="intercom-emoji-picker-emoji" title="frowning">😦</span>
+                      <span class="intercom-emoji-picker-emoji" title="anguished">😧</span>
+                      <span class="intercom-emoji-picker-emoji" title="imp">👿</span>
+                      <span class="intercom-emoji-picker-emoji" title="open_mouth">😮</span>
+                      <span class="intercom-emoji-picker-emoji" title="grimacing">😬</span>
+                      <span class="intercom-emoji-picker-emoji" title="neutral_face">😐</span>
+                      <span class="intercom-emoji-picker-emoji" title="confused">😕</span>
+                      <span class="intercom-emoji-picker-emoji" title="hushed">😯</span>
+                      <span class="intercom-emoji-picker-emoji" title="smirk">😏</span>
+                      <span class="intercom-emoji-picker-emoji" title="expressionless">😑</span>
+                      <span class="intercom-emoji-picker-emoji" title="man_with_gua_pi_mao">👲</span>
+                      <span class="intercom-emoji-picker-emoji" title="man_with_turban">👳</span>
+                      <span class="intercom-emoji-picker-emoji" title="cop">👮</span>
+                      <span class="intercom-emoji-picker-emoji" title="construction_worker">👷</span>
+                      <span class="intercom-emoji-picker-emoji" title="guardsman">💂</span>
+                      <span class="intercom-emoji-picker-emoji" title="baby">👶</span>
+                      <span class="intercom-emoji-picker-emoji" title="boy">👦</span>
+                      <span class="intercom-emoji-picker-emoji" title="girl">👧</span>
+                      <span class="intercom-emoji-picker-emoji" title="man">👨</span>
+                      <span class="intercom-emoji-picker-emoji" title="woman">👩</span>
+                      <span class="intercom-emoji-picker-emoji" title="older_man">👴</span>
+                      <span class="intercom-emoji-picker-emoji" title="older_woman">👵</span>
+                      <span class="intercom-emoji-picker-emoji" title="person_with_blond_hair">👱</span>
+                      <span class="intercom-emoji-picker-emoji" title="angel">👼</span>
+                      <span class="intercom-emoji-picker-emoji" title="princess">👸</span>
+                      <span class="intercom-emoji-picker-emoji" title="smiley_cat">😺</span>
+                      <span class="intercom-emoji-picker-emoji" title="smile_cat">😸</span>
+                      <span class="intercom-emoji-picker-emoji" title="heart_eyes_cat">😻</span>
+                      <span class="intercom-emoji-picker-emoji" title="kissing_cat">😽</span>
+                      <span class="intercom-emoji-picker-emoji" title="smirk_cat">😼</span>
+                      <span class="intercom-emoji-picker-emoji" title="scream_cat">🙀</span>
+                      <span class="intercom-emoji-picker-emoji" title="crying_cat_face">😿</span>
+                      <span class="intercom-emoji-picker-emoji" title="joy_cat">😹</span>
+                      <span class="intercom-emoji-picker-emoji" title="pouting_cat">😾</span>
+                      <span class="intercom-emoji-picker-emoji" title="japanese_ogre">👹</span>
+                      <span class="intercom-emoji-picker-emoji" title="japanese_goblin">👺</span>
+                      <span class="intercom-emoji-picker-emoji" title="see_no_evil">🙈</span>
+                      <span class="intercom-emoji-picker-emoji" title="hear_no_evil">🙉</span>
+                      <span class="intercom-emoji-picker-emoji" title="speak_no_evil">🙊</span>
+                      <span class="intercom-emoji-picker-emoji" title="skull">💀</span>
+                      <span class="intercom-emoji-picker-emoji" title="alien">👽</span>
+                      <span class="intercom-emoji-picker-emoji" title="hankey">💩</span>
+                      <span class="intercom-emoji-picker-emoji" title="fire">🔥</span>
+                      <span class="intercom-emoji-picker-emoji" title="sparkles">✨</span>
+                      <span class="intercom-emoji-picker-emoji" title="star2">🌟</span>
+                      <span class="intercom-emoji-picker-emoji" title="dizzy">💫</span>
+                      <span class="intercom-emoji-picker-emoji" title="boom">💥</span>
+                      <span class="intercom-emoji-picker-emoji" title="anger">💢</span>
+                      <span class="intercom-emoji-picker-emoji" title="sweat_drops">💦</span>
+                      <span class="intercom-emoji-picker-emoji" title="droplet">💧</span>
+                      <span class="intercom-emoji-picker-emoji" title="zzz">💤</span>
+                      <span class="intercom-emoji-picker-emoji" title="dash">💨</span>
+                      <span class="intercom-emoji-picker-emoji" title="ear">👂</span>
+                      <span class="intercom-emoji-picker-emoji" title="eyes">👀</span>
+                      <span class="intercom-emoji-picker-emoji" title="nose">👃</span>
+                      <span class="intercom-emoji-picker-emoji" title="tongue">👅</span>
+                      <span class="intercom-emoji-picker-emoji" title="lips">👄</span>
+                      <span class="intercom-emoji-picker-emoji" title="thumbs_up">👍</span>
+                      <span class="intercom-emoji-picker-emoji" title="-1">👎</span>
+                      <span class="intercom-emoji-picker-emoji" title="ok_hand">👌</span>
+                      <span class="intercom-emoji-picker-emoji" title="facepunch">👊</span>
+                      <span class="intercom-emoji-picker-emoji" title="fist">✊</span>
+                      <span class="intercom-emoji-picker-emoji" title="wave">👋</span>
+                      <span class="intercom-emoji-picker-emoji" title="hand">✋</span>
+                      <span class="intercom-emoji-picker-emoji" title="open_hands">👐</span>
+                      <span class="intercom-emoji-picker-emoji" title="point_up_2">👆</span>
+                      <span class="intercom-emoji-picker-emoji" title="point_down">👇</span>
+                      <span class="intercom-emoji-picker-emoji" title="point_right">👉</span>
+                      <span class="intercom-emoji-picker-emoji" title="point_left">👈</span>
+                      <span class="intercom-emoji-picker-emoji" title="middle_finger">🖕</span>
+                      <span class="intercom-emoji-picker-emoji" title="raised_hands">🙌</span>
+                      <span class="intercom-emoji-picker-emoji" title="pray">🙏</span>
+                      <span class="intercom-emoji-picker-emoji" title="clap">👏</span>
+                      <span class="intercom-emoji-picker-emoji" title="muscle">💪</span>
+                      <span class="intercom-emoji-picker-emoji" title="walking">🚶</span>
+                      <span class="intercom-emoji-picker-emoji" title="runner">🏃</span>
+                      <span class="intercom-emoji-picker-emoji" title="dancer">💃</span>
+                      <span class="intercom-emoji-picker-emoji" title="couple">👫</span>
+                      <span class="intercom-emoji-picker-emoji" title="family">👪</span>
+                      <span class="intercom-emoji-picker-emoji" title="couplekiss">💏</span>
+                      <span class="intercom-emoji-picker-emoji" title="couple_with_heart">💑</span>
+                      <span class="intercom-emoji-picker-emoji" title="dancers">👯</span>
+                      <span class="intercom-emoji-picker-emoji" title="ok_woman">🙆</span>
+                      <span class="intercom-emoji-picker-emoji" title="no_good">🙅</span>
+                      <span class="intercom-emoji-picker-emoji" title="information_desk_person">💁</span>
+                      <span class="intercom-emoji-picker-emoji" title="raising_hand">🙋</span>
+                      <span class="intercom-emoji-picker-emoji" title="massage">💆</span>
+                      <span class="intercom-emoji-picker-emoji" title="haircut">💇</span>
+                      <span class="intercom-emoji-picker-emoji" title="nail_care">💅</span>
+                      <span class="intercom-emoji-picker-emoji" title="bride_with_veil">👰</span>
+                      <span class="intercom-emoji-picker-emoji" title="person_with_pouting_face">🙎</span>
+                      <span class="intercom-emoji-picker-emoji" title="person_frowning">🙍</span>
+                      <span class="intercom-emoji-picker-emoji" title="bow">🙇</span>
+                      <span class="intercom-emoji-picker-emoji" title="tophat">🎩</span>
+                      <span class="intercom-emoji-picker-emoji" title="crown">👑</span>
+                      <span class="intercom-emoji-picker-emoji" title="womans_hat">👒</span>
+                      <span class="intercom-emoji-picker-emoji" title="athletic_shoe">👟</span>
+                      <span class="intercom-emoji-picker-emoji" title="mans_shoe">👞</span>
+                      <span class="intercom-emoji-picker-emoji" title="sandal">👡</span>
+                      <span class="intercom-emoji-picker-emoji" title="high_heel">👠</span>
+                      <span class="intercom-emoji-picker-emoji" title="boot">👢</span>
+                      <span class="intercom-emoji-picker-emoji" title="shirt">👕</span>
+                      <span class="intercom-emoji-picker-emoji" title="necktie">👔</span>
+                      <span class="intercom-emoji-picker-emoji" title="womans_clothes">👚</span>
+                      <span class="intercom-emoji-picker-emoji" title="dress">👗</span>
+                      <span class="intercom-emoji-picker-emoji" title="running_shirt_with_sash">🎽</span>
+                      <span class="intercom-emoji-picker-emoji" title="jeans">👖</span>
+                      <span class="intercom-emoji-picker-emoji" title="kimono">👘</span>
+                      <span class="intercom-emoji-picker-emoji" title="bikini">👙</span>
+                      <span class="intercom-emoji-picker-emoji" title="briefcase">💼</span>
+                      <span class="intercom-emoji-picker-emoji" title="handbag">👜</span>
+                      <span class="intercom-emoji-picker-emoji" title="pouch">👝</span>
+                      <span class="intercom-emoji-picker-emoji" title="purse">👛</span>
+                      <span class="intercom-emoji-picker-emoji" title="eyeglasses">👓</span>
+                      <span class="intercom-emoji-picker-emoji" title="ribbon">🎀</span>
+                      <span class="intercom-emoji-picker-emoji" title="closed_umbrella">🌂</span>
+                      <span class="intercom-emoji-picker-emoji" title="lipstick">💄</span>
+                      <span class="intercom-emoji-picker-emoji" title="red_heart">❤️</span>
+                      <span class="intercom-emoji-picker-emoji" title="yellow_heart">💛</span>
+                      <span class="intercom-emoji-picker-emoji" title="blue_heart">💙</span>
+                      <span class="intercom-emoji-picker-emoji" title="purple_heart">💜</span>
+                      <span class="intercom-emoji-picker-emoji" title="green_heart">💚</span>
+                      <span class="intercom-emoji-picker-emoji" title="broken_heart">💔</span>
+                      <span class="intercom-emoji-picker-emoji" title="heartpulse">💗</span>
+                      <span class="intercom-emoji-picker-emoji" title="heartbeat">💓</span>
+                      <span class="intercom-emoji-picker-emoji" title="two_hearts">💕</span>
+                      <span class="intercom-emoji-picker-emoji" title="sparkling_heart">💖</span>
+                      <span class="intercom-emoji-picker-emoji" title="revolving_hearts">💞</span>
+                      <span class="intercom-emoji-picker-emoji" title="cupid">💘</span>
+                      <span class="intercom-emoji-picker-emoji" title="love_letter">💌</span>
+                      <span class="intercom-emoji-picker-emoji" title="kiss">💋</span>
+                      <span class="intercom-emoji-picker-emoji" title="ring">💍</span>
+                      <span class="intercom-emoji-picker-emoji" title="gem">💎</span>
+                      <span class="intercom-emoji-picker-emoji" title="bust_in_silhouette">👤</span>
+                      <span class="intercom-emoji-picker-emoji" title="eggplant">🍆</span>
+                      <span class="intercom-emoji-picker-emoji" title="shit">💩</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="intercom-composer-popover-caret"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="assets/ws.js"></script>
+    <script src="assets/script.js"></script>
+
+</body>
+
+</html>
