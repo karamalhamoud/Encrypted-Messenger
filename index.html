@@ -34,6 +34,8 @@
 </head>
 
 <body>
+  <input accept="image/*" type="file" id="upload" name="upload" style="visibility: hidden;" />
+
   <nav class="navbar navbar-custom fixed-top flex-md-nowrap p-2 shadow">
     <a class="navbar-brand col-sm-2 col-md-2 mr-0" href="/">
       <img src="assets/logout.png" width="22px" onclick="logout()" style="float: right; padding-top: 7px;">
@@ -52,16 +54,17 @@
       <div class="chat__conversation-panel__container">
 
 
-        <!-- <button class="chat__conversation-panel__button panel-item btn-icon add-file-button">
-      <svg class="feather feather-plus sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-        stroke-linejoin="round" aria-hidden="true">
-        <line x1="12" y1="5" x2="12" y2="19"></line>
-        <line x1="5" y1="12" x2="19" y2="12"></line>
-      </svg>
-    </button> -->
+        <button onclick="photo();" onchange="base64it();" class="chat__conversation-panel__button panel-item btn-icon add-file-button">
+          <svg class="feather feather-plus sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
 
-
+        
+        &nbsp;&nbsp;
 
 
         <button onclick="$('.intercom-composer-emoji-popover').toggleClass('active');"

@@ -156,6 +156,26 @@ function send() {
 }
 
 
+
+
+function send_image(text) {
+  var msg_id = createmsg_id();
+  document.getElementById("msg_input").value = '';
+  add_mine(msg_id, text);
+
+  var encrypted = btoa(CryptoJS.AES.encrypt(text, salt));
+
+  if (username !== "") {
+    var send = new Audio('assets/send.wav');
+    send.play()
+    ws.send('{"username": "' + username + '","id": "' + msg_id + '","msg": "' + encrypted.toString() + '"}');
+  }
+
+  scroll_to_end();
+  document.getElementById("msg_input").focus();
+}
+
+
 function scroll_to_end() {
   var objDiv = document.getElementById("chat_msgs");
   objDiv.scrollTop = objDiv.scrollHeight;
@@ -325,4 +345,36 @@ function getCookie(cname) {
     }
   }
   return "";
+}
+
+
+
+function photo() {
+  $('#upload').click();
+}
+
+
+$("#upload").on('change', function (event) {
+  base64($('#upload'), function (data) {
+    send_image('<img style="max-width: 140px;" src="data:image/png;base64, ' + data.base64 + '"/>');
+  })
+});
+
+
+function base64(file, callback) {
+  var coolFile = {};
+  function readerOnload(e) {
+    var base64 = btoa(e.target.result);
+    coolFile.base64 = base64;
+    callback(coolFile)
+  };
+
+  var reader = new FileReader();
+  reader.onload = readerOnload;
+
+  var file = file[0].files[0];
+  coolFile.filetype = file.type;
+  coolFile.size = file.size;
+  coolFile.filename = file.name;
+  reader.readAsBinaryString(file);
 }
