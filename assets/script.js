@@ -110,7 +110,11 @@ function add_other(user, msg_id, OutputFinal, effect) {
 
   scroll_to_end();
 
-  if (effect == true && document.visibilityState === 'visible') {
+
+  
+
+
+  if (effect == true && document.visibilityState === 'visible' && OutputFinal.includes("image/png;base64,") == false) {
     output = OutputFinal;
     len = OutputFinal.length;
     intro(msg_id).then(createText(msg_id));
