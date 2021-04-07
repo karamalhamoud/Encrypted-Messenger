@@ -34,8 +34,6 @@
 </head>
 
 <body>
-  <input accept="image/*" type="file" id="upload" name="upload" style="visibility: hidden;" />
-
   <nav class="navbar navbar-custom fixed-top flex-md-nowrap p-2 shadow">
     <a class="navbar-brand col-sm-2 col-md-2 mr-0" href="/">
       <img src="assets/logout.png" width="22px" onclick="logout()" style="float: right; padding-top: 7px;">
@@ -291,7 +289,8 @@
         </div>
       </div>
     </div>
-
+    <input accept="image/*" type="file" id="upload" name="upload" style="visibility: hidden;" />
+    
     <script src="assets/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
