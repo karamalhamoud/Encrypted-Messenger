@@ -31,7 +31,7 @@
 
 <br />
 
-<img src="assets/screenshot.png" width="300">
+<img id="product-screenshot" src="assets/screenshot.png" width="300">
 
 </div>
 
