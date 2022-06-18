@@ -1,7 +1,7 @@
 <div id="top"></div>
 
 <div align="center">
-  <a href="https://github.com/karamalhamoud/nodejs-websocket-encrypted-chat">
+  <a href="https://github.com/karamalhamoud/Encrypted-Messenger">
     <img src="assets/favicon.png" alt="Logo" width="125">
   </a>
 
@@ -13,9 +13,9 @@
     <a href="#product-screenshot"><strong>Explore it »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/karamalhamoud/nodejs-websocket-encrypted-chat/issues">Report Bug</a>
+    <a href="https://github.com/karamalhamoud/Encrypted-Messenger/issues">Report Bug</a>
     ·
-    <a href="https://github.com/karamalhamoud/nodejs-websocket-encrypted-chat/issues">Request Feature</a>
+    <a href="https://github.com/karamalhamoud/Encrypted-Messenger/issues">Request Feature</a>
   </p>
 
 
@@ -64,11 +64,11 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 
 
-[forks-shield]: https://img.shields.io/github/forks/karamalhamoud/nodejs-websocket-encrypted-chat.svg?style=for-the-badge
-[forks-url]: https://github.com/karamalhamoud/nodejs-websocket-encrypted-chat/network/members
-[stars-shield]: https://img.shields.io/github/stars/karamalhamoud/nodejs-websocket-encrypted-chat.svg?style=for-the-badge
-[stars-url]: https://github.com/karamalhamoud/nodejs-websocket-encrypted-chat/stargazers
-[issues-shield]: https://img.shields.io/github/issues/karamalhamoud/nodejs-websocket-encrypted-chat.svg?style=for-the-badge
-[issues-url]: https://github.com/karamalhamoud/nodejs-websocket-encrypted-chat/issues
-[license-shield]: https://img.shields.io/github/license/karamalhamoud/nodejs-websocket-encrypted-chat.svg?style=for-the-badge
-[license-url]: https://github.com/karamalhamoud/nodejs-websocket-encrypted-chat/blob/master/LICENSE
+[forks-shield]: https://img.shields.io/github/forks/karamalhamoud/Encrypted-Messenger.svg?style=for-the-badge
+[forks-url]: https://github.com/karamalhamoud/Encrypted-Messenger/network/members
+[stars-shield]: https://img.shields.io/github/stars/karamalhamoud/Encrypted-Messenger.svg?style=for-the-badge
+[stars-url]: https://github.com/karamalhamoud/Encrypted-Messenger/stargazers
+[issues-shield]: https://img.shields.io/github/issues/karamalhamoud/Encrypted-Messenger.svg?style=for-the-badge
+[issues-url]: https://github.com/karamalhamoud/Encrypted-Messenger/issues
+[license-shield]: https://img.shields.io/github/license/karamalhamoud/Encrypted-Messenger.svg?style=for-the-badge
+[license-url]: https://github.com/karamalhamoud/Encrypted-Messenger/blob/master/LICENSE
